@@ -1,1 +1,10 @@
-Script built using NodeJS, using fast-csv, fdf.js, and fs modules. I put this together over a weekend for my girlfriends job. The need was to generate 300+ PDFs with prefilled information provided in an excel spreadsheet. I converted the spreadsheet into a CSV file, which then was fed into the script which assigned each delimited field to a header variable. Individual FDF files were created from the CSV, which are then parsed into a PDF form. The FDF + PDF form would then create a new filled PDF file corresponding to each record.
+Script built using NodeJS, and following modules: 
+csv, fdf, fs, child_process. 
+
+Needed to generate 300+ PDFs with prefilled information provided from an excel spreadsheet. 
+
+Spreadsheet is converted to CSV,
+
+FDF files generated from CSV headers
+
+pdf toolkit command line then ran to use FDF form files and generate pre-populated PDF files. 
