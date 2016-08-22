@@ -4,7 +4,7 @@
   "description": "Script built using NodeJS, and following modules: \r csv, fdf, fs, child_process.",
   "main": "convertCSV2.js",
   "dependencies": {
-    "fast-csv": "^0.4.4",
+    "csv-parse": "^1.1.7",
     "fdf.js": "^0.1.3"
   },
   "devDependencies": {},

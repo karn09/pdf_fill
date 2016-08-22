@@ -3,7 +3,7 @@ var fdf = require('fdf.js');
 var fs = require('fs');
 var childPrc = require('child_process');
 
-var CSVINPUT = "2015perf.csv"
+var CSVINPUT = process.argv[1]
 var PDFTEMPLATE = '2015_perf_temp.pdf';
 // command line arguments:
 // CSV input
