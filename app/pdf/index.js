@@ -4,16 +4,22 @@ const root = path.join(__dirname, '..', '..', '/');
 const fillPdf = require('fill-pdf');
 
 module.exports = {
-  write: function(data, template, args, callback) {
+  generate: function(data, template, args, callback) {
     let templatePath = root + template;
-    return fillPdf.generatePdf(data, templatePath, args, function(err, output) {
+    fillPdf.generatePdf(data, templatePath, args, function(err, output) {
       if (!err) {
-        return callback(output)
+        // console.log('OUTPUT: ', output)
+        callback( output )
       }
     })
   },
 
-  read: function () {
+  write: function (filePath, file, callback) {
+    return fs.writeFile(filePath, file, function (err) {
+      if (err) throw err
+      callback(' pdf created.')
+      console.log()
+    })
 
   }
 
