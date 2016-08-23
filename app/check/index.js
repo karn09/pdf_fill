@@ -13,5 +13,12 @@ module.exports = {
 
   template: function(file) {
 
+        const csvRegex = new RegExp(/.pdf$/, 'gi')
+
+        if (csvRegex.test(file)) {
+          return file;
+        } else {
+          throw file + ' does not end in .pdf'
+        }
   }
 }
