@@ -26,12 +26,18 @@ csv.read(CSVINPUT)
 	.then(function (data) {
 		return data
 	})
-  .then(function(data) {
-    csv.toObject(data)
-      .then(function(csvObj) {
-        return csvObj
-      })
-      .then(function(csvObj) {
-        // Promise.all(csvObj)pdf.generate()
-      })
-  })
+	.then(function (data) {
+		csv.toObject(data)
+			.then(function (csvObj) {
+				return csvObj
+			})
+			.then(function (csvObj) {
+				Promise.all(csvObj.map(function (row) {
+						let filePath = OUTPUT_PATH + '/' + row.Name + '_2016.pdf';
+						return pdf.generate(row, TEMPLATE, ARGS)
+					}))
+					.then(function (pdfBuffers) {
+            console.log(pdfBuffers)
+					})
+			})
+	})

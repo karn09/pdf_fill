@@ -4,7 +4,7 @@ const root = path.join(__dirname, '..', '..', '/');
 const fillPdf = require('fill-pdf');
 
 module.exports = {
-  generate: function(data, template, args, callback) {
+  generate: function(data, template, args) {
     let templatePath = root + template;
     return new Promise(function(resolve, reject) {
       fillPdf.generatePdf(data, templatePath, args, function(err, output) {
