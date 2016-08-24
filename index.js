@@ -36,6 +36,7 @@ csv.read(CSVINPUT)
             return pdf.generate(row, TEMPLATE, ARGS);
 					}))
 					.then(function (pdfBuffers) {
+            console.log(pdfBuffers.length)
             Promise.all(pdfBuffers.map(function(buffer) {
               let name = buffer[0];
               let data = buffer[1];
@@ -43,7 +44,12 @@ csv.read(CSVINPUT)
               // console.log(buffer)
               return pdf.write(filePath, data);
             }))
-            .then(console.log('Done.'))
+            .then(function(files) {
+              console.log(files)
+            })
+            .catch(function(err) {
+              console.log(err)
+            })
 					})
 			})
 	})

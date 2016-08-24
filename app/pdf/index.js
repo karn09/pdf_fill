@@ -9,7 +9,8 @@ module.exports = {
     return new Promise(function(resolve, reject) {
       fillPdf.generatePdf(data, templatePath, args, function(err, output) {
         if (err) reject(err);
-        resolve([data.Name, output])
+        let fileName = data.Reviewer+ '_for_' + data.Name  
+        resolve([fileName, output])
       })
     })
   },
