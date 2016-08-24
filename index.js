@@ -13,19 +13,25 @@ const ARGS = process.argv[4] !== undefined ? process.argv[4].split(' ') : '';
 const OUTPUT_PATH = process.argv[5] !== undefined ? path.join(__dirname + process.argv[5]) : './'
 
 function fillBuffer(data, callback) {
-  data.map(function(row) {
-    let filePath = OUTPUT_PATH + '/' + row.Name + '_2016.pdf';
-    pdf.generate(row, TEMPLATE, ARGS, function(file) {
-      // console.log(file)
-      callback(file);
-    })
-  })
+	data.map(function (row) {
+		let filePath = OUTPUT_PATH + '/' + row.Name + '_2016.pdf';
+		pdf.generate(row, TEMPLATE, ARGS, function (file) {
+			// console.log(file)
+			callback(file);
+		})
+	})
 }
 
-csv.read(CSVINPUT, function(data) {
-  var buffer = [];
-  fillBuffer(data, function(dat) {
-    buffer.push(dat)
+csv.read(CSVINPUT)
+	.then(function (data) {
+		return data
+	})
+  .then(function(data) {
+    csv.toObject(data)
+      .then(function(csvObj) {
+        return csvObj
+      })
+      .then(function(csvObj) {
+        // Promise.all(csvObj)pdf.generate()
+      })
   })
-
-})

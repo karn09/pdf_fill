@@ -6,11 +6,11 @@ const fillPdf = require('fill-pdf');
 module.exports = {
   generate: function(data, template, args, callback) {
     let templatePath = root + template;
-    fillPdf.generatePdf(data, templatePath, args, function(err, output) {
-      if (!err) {
-        // console.log('OUTPUT: ', output)
-        callback( output )
-      }
+    return new Promise(function(resolve, reject) {
+      fillPdf.generatePdf(data, templatePath, args, function(err, output) {
+        if (err) reject(err);
+        resolve(output)
+      })
     })
   },
 
