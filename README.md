@@ -1,10 +1,11 @@
-Script built using NodeJS, and following modules: 
-csv, fdf, fs, child_process. 
+CLI PDF Filler application. Takes CSV, PDF template, and outputs pre-filled PDFs.
 
-Needed to generate 300+ PDFs with prefilled information provided from an excel spreadsheet. 
+first:
 
-Spreadsheet is converted to CSV,
+npm install
 
-FDF files generated from CSV headers
+run: 
+ex. 
+node .\index.js .\perfrev2016update1.csv '2015-2016 Review.pdf' 'user_pw 2016eval' '/temp'
 
-pdf toolkit command line then ran to use FDF form files and generate pre-populated PDF files. 
+node .\index.js CSV_FILE PDF_TEMPLATE ARGS WRITE_TO_DIR
