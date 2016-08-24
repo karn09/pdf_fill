@@ -9,16 +9,17 @@ module.exports = {
     return new Promise(function(resolve, reject) {
       fillPdf.generatePdf(data, templatePath, args, function(err, output) {
         if (err) reject(err);
-        resolve(output)
+        resolve([data.Name, output])
       })
     })
   },
 
-  write: function (filePath, file, callback) {
-    return fs.writeFile(filePath, file, function (err) {
-      if (err) throw err
-      callback(' pdf created.')
-      console.log()
+  write: function (filePath, file) {
+    return new Promise(function(resolve, reject) {
+      fs.writeFile(filePath, file, function (err) {
+        if (err) reject(err)
+        resolve('File created: ' + filePath)
+      })
     })
 
   }

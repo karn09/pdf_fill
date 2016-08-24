@@ -33,11 +33,17 @@ csv.read(CSVINPUT)
 			})
 			.then(function (csvObj) {
 				Promise.all(csvObj.map(function (row) {
-						let filePath = OUTPUT_PATH + '/' + row.Name + '_2016.pdf';
-						return pdf.generate(row, TEMPLATE, ARGS)
+            return pdf.generate(row, TEMPLATE, ARGS);
 					}))
 					.then(function (pdfBuffers) {
-            console.log(pdfBuffers)
+            Promise.all(pdfBuffers.map(function(buffer) {
+              let name = buffer[0];
+              let data = buffer[1];
+              let filePath = OUTPUT_PATH + '/' + name + '_2016.pdf';
+              // console.log(buffer)
+              return pdf.write(filePath, data);
+            }))
+            .then(console.log('Done.'))
 					})
 			})
 	})
