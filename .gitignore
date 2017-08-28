@@ -2,3 +2,5 @@ node_modules
 *.csv
 *.pdf
 .DS_Store
+filled/*.pdf
+temp/*.fdf
