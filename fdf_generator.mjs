@@ -10,6 +10,10 @@ class FdfGenerator {
     this.tokenMap = {};
   }
 
+  getTemplatePath() {
+    return this.fdfTemplatePath;
+  }
+
   getFdfFilePath(dataObj) {
     return `${this.fdfTemplatePath}/${this.getFileName(dataObj)}`;
   }
@@ -41,7 +45,7 @@ class FdfGenerator {
     await fs.promises
       .mkdir(this.fdfTemplatePath, { recursive: true })
       .catch(console.error);
-    
+
     fdf.generator(dataObj, this.getFdfFilePath(dataObj));
   }
 
@@ -51,12 +55,12 @@ class FdfGenerator {
       fileNameArr[this.tokenMap[token]] = dataObj[token];
     });
 
-    return this.#joinNameTokens(fileNameArr)
+    return this.#joinNameTokens(fileNameArr);
   }
 
   #joinNameTokens(fileNameArr) {
     let fileName = fileNameArr.join(this.delimiter);
-    return fileName.replace('pdf', 'fdf')
+    return fileName.replace("pdf", "fdf");
   }
   #rebuildObjectWithLowerCaseKeys(dataObj) {
     const keys = Object.keys(dataObj);
