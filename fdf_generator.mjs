@@ -8,7 +8,10 @@ class FdfGenerator {
     this.delimiter = delim;
     this.nameTokens = this.nameSchema.split(delim);
     this.tokenMap = {};
-    console.log(this.fdfTemplatePath);
+  }
+
+  getFdfFilePath(dataObj) {
+    return `${this.fdfTemplatePath}/${this.getFileName(dataObj)}`;
   }
 
   getFileName(dataObj) {
@@ -35,12 +38,11 @@ class FdfGenerator {
   }
 
   async createFDF(dataObj) {
-    const fileName = this.getFileName(dataObj);
     await fs.promises
       .mkdir(this.fdfTemplatePath, { recursive: true })
       .catch(console.error);
     
-    await fdf.generator(dataObj, `${this.fdfTemplatePath}/${fileName}`);
+    fdf.generator(dataObj, this.getFdfFilePath(dataObj));
   }
 
   #fastGetFileName(dataObj) {
