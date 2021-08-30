@@ -21,20 +21,20 @@ class FdfGenerator {
 
     const data = this.#rebuildObjectWithLowerCaseKeys(dataObj);
 
-    let fileName = [];
+    let fileNameArr = [];
 
     this.nameTokens.forEach((token, idx) => {
       const lcToken = token.toLowerCase();
 
       if (data[lcToken]) {
         this.tokenMap[token] = idx;
-        fileName.push(data[lcToken]);
+        fileNameArr.push(data[lcToken]);
       } else {
-        fileName.push(token);
+        fileNameArr.push(token);
       }
     });
 
-    return fileName.join(this.delimiter);
+    return this.#joinNameTokens(fileNameArr);
   }
 
   async createFDF(dataObj) {
@@ -51,9 +51,13 @@ class FdfGenerator {
       fileNameArr[this.tokenMap[token]] = dataObj[token];
     });
 
-    return fileNameArr.join(this.delimiter);
+    return this.#joinNameTokens(fileNameArr)
   }
 
+  #joinNameTokens(fileNameArr) {
+    let fileName = fileNameArr.join(this.delimiter);
+    return fileName.replace('pdf', 'fdf')
+  }
   #rebuildObjectWithLowerCaseKeys(dataObj) {
     const keys = Object.keys(dataObj);
     let key;
@@ -69,14 +73,4 @@ class FdfGenerator {
   }
 }
 
-let a = new FdfGenerator("username_for_Name_PerformanceReview2021.pdf", "_");
-console.log(
-  await a.createFDF({
-    Name: "Joe Shmoe",
-    Position: "Marketing",
-    Department: "",
-    Date: "4/21/2021",
-    Reviewer: "Harry Smith",
-    Username: "HSmith",
-  })
-);
+export default FdfGenerator;
