@@ -2,15 +2,14 @@
   "name": "pdf_fill",
   "version": "1.0.0",
   "description": "Script built using NodeJS, and following modules: \r csv, fdf, fs, child_process.",
-  "main": "convertCSV2.js",
+  "main": "index.js",
+  "bin": "./index.js",
   "dependencies": {
-    "execa": "^0.10.0",
-    "fast-csv": "^2.4.1",
-    "lodash": "^4.17.10",
-    "node-qpdf": "^1.0.3",
-    "utf8-fdf-generator": "0.0.3"
+    "execa": "^5.1.1",
+    "fast-csv": "^4.3.6",
+    "lodash": "^4.17.21",
+    "utf8-fdf-generator": "^0.0.3"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
