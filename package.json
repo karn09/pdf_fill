@@ -2,8 +2,8 @@
   "name": "pdf_fill",
   "version": "1.0.0",
   "description": "Script built using NodeJS, and following modules: \r csv, fdf, fs, child_process.",
-  "main": "index.js",
-  "bin": "./index.js",
+  "main": "index.mjs",
+  "bin": "./index.mjs",
   "dependencies": {
     "execa": "^5.1.1",
     "fast-csv": "^4.3.6",
